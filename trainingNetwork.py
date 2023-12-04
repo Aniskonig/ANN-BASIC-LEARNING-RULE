@@ -177,26 +177,32 @@ class TrainingNetwork:
         """
 
         # Training the network for the specified number of steps
-        for step in range(self.num_steps):
-            print("step------------------", step + 1)
-            # Iterate over each training example
-            for i, (input_data, target_output) in enumerate(self.training_data):
+        # for step in range(self.num_steps):
+        #     print("step------------------", step + 1)
 
+        counter = 0
+        # Iterate over each training example
+        for i, (input_data, target_output) in enumerate(self.training_data):
+            if counter < self.num_steps:
                 u = self.adjust_number_precision(np.dot(input_data, self.weights))
                 predicted_output = self.adjust_number_precision(self.activation_function(u))
                 print("weights", self.weights)
+                print(f"X {i+1}")
                 print("input_data", input_data)
                 print("target_output", target_output)
                 print("predicted_output", predicted_output)
                 # Check if predicted output matches the target output
                 if predicted_output != target_output:
                     error = target_output - predicted_output
-                    delta_weights = int(self.learning_rate) * int(error) * input_data
+                    print("predicted_output != target_output")
+                    delta_weights = self.learning_rate * int(error) * input_data
+                    print("delta_weights", delta_weights)
                     self.weights = self.weights + delta_weights
                 else:
                     # If it's the last input, return the weights
                     if i == len(self.training_data) - 1:
                         return self.weights  # Stop training if it's the last input
+                counter += 1
         return self.weights  # the last input if the steps are less than the needed
 
     def delta_learning_rule(self):
