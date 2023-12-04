@@ -156,11 +156,11 @@ class TrainingNetwork:
             print("input_data", input_data)
 
             u = self.adjust_number_precision(np.dot(input_data, self.weights))
-            # print("u", u)
+            print("u", u)
             predicted_output = self.adjust_number_precision(self.activation_function(u))
-            # print("f(u)", predicted_output)
+            print("f(u)", predicted_output)
             delta_weights = self.learning_rate * input_data * predicted_output
-            # print("W + delta_weights", self.weights + delta_weights)
+            print("W + delta_weights", self.weights + delta_weights)
             # Update weights using the specified learning rule
             # delta_weights = self.learning_rule(input_data)
             self.weights = self.weights + delta_weights
@@ -221,20 +221,20 @@ class TrainingNetwork:
         #     print("step------------------", step + 1)
         # Iterate over each training example
         for i, (input_data, target_output) in enumerate(self.training_data):
-            if counter < self.num_steps:
+            if counter < len(self.training_data):
                 print("step ------------------", counter + 1)
                 u = self.adjust_number_precision(np.dot(input_data, self.weights))
                 predicted_output = self.adjust_number_precision(self.activation_function(u))
                 f_prime_u = self.adjust_number_precision(0.5*(1 - predicted_output ** 2))
-                # print("weights", self.weights)
-                # print("input_data", input_data)
-                # print("target_output", target_output)
-                # print("u", u)
-                # print("predicted_output", predicted_output)
-                # print("f_prime_u", f_prime_u)
+                print("weights", self.weights)
+                print("input_data", input_data)
+                print("target_output", target_output)
+                print("u", u)
+                print("predicted_output", predicted_output)
+                print("f_prime_u", f_prime_u)
 
                 delta_weights = self.adjust_number_precision(self.learning_rate * (target_output - predicted_output)* f_prime_u) * input_data
-                # print("delta_weights", delta_weights)
+                print("delta_weights", delta_weights)
                 self.weights = self.weights + delta_weights
                 counter += 1
             else:

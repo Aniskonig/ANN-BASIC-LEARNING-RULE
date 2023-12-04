@@ -109,11 +109,11 @@ class GUI:
         space.grid()
 
         # Create a label to display the final weights
-        self.label_final_weights = tk.Label(master, text="Final Weights:")
+        self.label_final_weights = tk.Label(master, text="Final Weight:")
         self.label_final_weights.grid(row=11, column=0, sticky=tk.E)
 
         # Create a text widget to display the final weights
-        self.text_final_weights = tk.Text(master, height=1, width=30, state=tk.DISABLED, background="black", fg="white")
+        self.text_final_weights = tk.Text(master, height=2, width=30, state=tk.DISABLED, background="black", fg="white")
         self.text_final_weights.grid(row=11, column=1, columnspan=4)
 
         space = tk.Label()
